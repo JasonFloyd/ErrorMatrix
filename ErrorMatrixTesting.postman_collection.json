@@ -8532,6 +8532,954 @@
 			]
 		},
 		{
+			"name": "accountholders{id}-cards{Id}cardnumber",
+			"description": "",
+			"item": [
+				{
+					"name": "POST OAuth Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "var data = JSON.parse(responseBody);\npostman.setGlobalVariable(\"AccessToken\", data.accessToken);\npostman.setGlobalVariable(\"RefreshToken\", data.refreshToken);"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/auth/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "emailAddress",
+									"value": "taran.lent@berkleemusic.com",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "Test@1234",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "11 | GET - AHCDN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\n    tests[\"Status code is 415\"] = responseCode.code === 415;\r\n\t\r\n    var jsonData = JSON.parse(responseBody);\r\n    tests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\n\r\n}\r\ncatch(err)\r\n{\r\n     tests[\"Unexpected Exception\"] = true;\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"683\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\npostman.setEnvironmentVariable(\"contentType\", \"xyz\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "12 | GET - AHCDN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\n    tests[\"Status code is 406\"] = responseCode.code === 406;\r\n\t\r\n    var jsonData = JSON.parse(responseBody);\r\n    tests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\n\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = true;\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"683\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\npostman.setEnvironmentVariable(\"accept\", \"xyz\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "13 | PUT - AHCDN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\n    tests[\"Status code is 405\"] = responseCode.code === 405;\r\n\ttests[\"Response Body is empty\"] = responseBody === \"\";\r\n\t\r\n    var jsonData = JSON.parse(responseBody);\r\n    tests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\n\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = true;\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"683\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\npostman.setEnvironmentVariable(\"accept\", \"xyz\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"active\": true\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "13 | POST ID - AHCDN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\n    tests[\"Status code is 405\"] = responseCode.code === 405;\r\n\ttests[\"Response Body is empty\"] = responseBody === \"\";\r\n\t\r\n    var jsonData = JSON.parse(responseBody);\r\n    tests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\n\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = true;\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"690\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"active\": true\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "13 | PATCH - AHCDN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\n    tests[\"Status code is 405\"] = responseCode.code === 405;\r\n\ttests[\"Response Body is empty\"] = responseBody === \"\";\r\n\t\r\n    var jsonData = JSON.parse(responseBody);\r\n    tests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\n\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = true;\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"683\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"active\": true\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "13 | DELETE - AHCDN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\n    tests[\"Status code is 405\"] = responseCode.code === 405;\r\n\ttests[\"Response Body is empty\"] = responseBody === \"\";\r\n\t\r\n    var jsonData = JSON.parse(responseBody);\r\n    tests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\n\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = true;\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"690\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"active\": true\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "14 | GET - AHCDN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\n    tests[\"Status code is 415\"] = responseCode.code === 415;\r\n\ttests[\"Response Body is empty\"] = responseBody === \"\";\r\n\t\r\n    var jsonData = JSON.parse(responseBody);\r\n    tests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\n\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = true;\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"683\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\npostman.setEnvironmentVariable(\"contentType\", \"application/xml\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "15 | GET ID - AHCDN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\n    tests[\"Status code is 406\"] = responseCode.code === 406;\r\n\ttests[\"Response Body is empty\"] = responseBody === \"\";\r\n\t\r\n    var jsonData = JSON.parse(responseBody);\r\n    tests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\n\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = true;\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"683\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\npostman.setEnvironmentVariable(\"accept\", \"application/xml\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "31 | GET - AHCDN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\ntests[\"Status code is 400\"] = responseCode.code === 400;\r\nvar jsonData = JSON.parse(responseBody);\r\ntests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\ntests[\"Operation Error.Code = 1004\"] = jsonData.operation.errors[0].code === \"1004\";\r\n\r\nvar time1 = {name : \"requestTimeStampUtc\"};\r\nvar time2 = {name : \"responseTimeStampUtc\"};\r\ntests[\"RequestResponse time differs\"] = (time1 != time2);\r\n\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = false;\r\n\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"683\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"es-MX;q=0.6, fr-FR;q=0.2, en-GB;q=0.8, zh-ZH;q=0.6, ja-JA;q=0.8, en-US;q=0.8, es;q=1.0\");\n\n/* Override values for specific conditions */\npostman.setEnvironmentVariable(\"contentType\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"invalid;q=invalid\");\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "41 | GET - AHCDN (accountHolderId)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\ntests[\"Status code is 404\"] = responseCode.code === 404;\r\nvar jsonData = JSON.parse(responseBody);\r\ntests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\ntests[\"Operation Error.Code = 1002\"] = jsonData.operation.errors[0].code === \"1002\";\r\n\r\nvar time1 = {name : \"requestTimeStampUtc\"};\r\nvar time2 = {name : \"responseTimeStampUtc\"};\r\ntests[\"RequestResponse time differs\"] = (time1 != time2);\r\n\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = false;\r\n\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"683\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\npostman.setEnvironmentVariable(\"accountHolderId\", \"abc\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "41 | GET - AHCDN (cardId)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\ntests[\"Status code is 404\"] = responseCode.code === 404;\r\nvar jsonData = JSON.parse(responseBody);\r\ntests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\ntests[\"Operation Error.Code = 1002\"] = jsonData.operation.errors[0].code === \"1002\";\r\n\r\nvar time1 = {name : \"requestTimeStampUtc\"};\r\nvar time2 = {name : \"responseTimeStampUtc\"};\r\ntests[\"RequestResponse time differs\"] = (time1 != time2);\r\n\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = false;\r\n\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"683\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\npostman.setEnvironmentVariable(\"cardId\", \"abc\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "51 | GET - AHCDN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\ntests[\"Status code is 400\"] = responseCode.code === 400;\r\nvar jsonData = JSON.parse(responseBody);\r\ntests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\ntests[\"Operation Error.Code = 1011\"] = jsonData.operation.errors[0].code === \"1011\";\r\n\r\nvar time1 = {name : \"requestTimeStampUtc\"};\r\nvar time2 = {name : \"responseTimeStampUtc\"};\r\ntests[\"RequestResponse time differs\"] = (time1 != time2);\r\n\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = false;\r\n\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"683\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber?invalidParamName=invalidParamName",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "61 | GET - AHCDN ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\ntests[\"Status code is 404\"] = responseCode.code === 404;\r\nvar jsonData = JSON.parse(responseBody);\r\ntests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\ntests[\"Operation Error.Code = 1014\"] = jsonData.operation.errors[0].code === \"1014\";\r\n\r\nvar time1 = {name : \"requestTimeStampUtc\"};\r\nvar time2 = {name : \"responseTimeStampUtc\"};\r\ntests[\"RequestResponse time differs\"] = (time1 != time2);\r\n\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = false;\r\n\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"683\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\npostman.setEnvironmentVariable(\"accountHolderId\", \"0\");\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST OAuth Token(for 63 success)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "var data = JSON.parse(responseBody);\npostman.setGlobalVariable(\"AccessToken\", data.accessToken);\npostman.setGlobalVariable(\"RefreshToken\", data.refreshToken);\n\ntry\n{\ntests[\"Status code is 200\"] = responseCode.code === 200;\n\n}\ncatch(err)\n{\n    tests[\"Unexpected Exception\"] = false;\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/auth/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "emailAddress",
+									"value": "tony.stark@email.com",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "Test@1234",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "63 | GET - AHCDN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\ntests[\"Status code is 403\"] = responseCode.code === 403;\r\nvar jsonData = JSON.parse(responseBody);\r\ntests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\ntests[\"Operation Error.Code = 1017\"] = jsonData.operation.errors[0].code === \"1017\";\r\n\r\nvar time1 = {name : \"requestTimeStampUtc\"};\r\nvar time2 = {name : \"responseTimeStampUtc\"};\r\ntests[\"RequestResponse time differs\"] = (time1 != time2);\r\n\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = false;\r\n\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\n//postman.setEnvironmentVariable(\"accountHolderId\", \"683\");\n//postman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\npostman.setEnvironmentVariable(\"accountHolderId\", \"695\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991113962\");\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST OAuth Token (for 81 success)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "var data = JSON.parse(responseBody);\npostman.setGlobalVariable(\"AccessToken\", data.accessToken);\npostman.setGlobalVariable(\"RefreshToken\", data.refreshToken);\n\ntry\n{\ntests[\"Status code is 200\"] = responseCode.code === 200;\n\n}\ncatch(err)\n{\n    tests[\"Unexpected Exception\"] = false;\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/auth/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "emailAddress",
+									"value": "taran.lent@berkleemusic.com",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "Test@1234",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "81 | GET - AHCDN (cardId)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\ntests[\"Status code is 404\"] = responseCode.code === 404;\r\nvar jsonData = JSON.parse(responseBody);\r\ntests[\"Operation Result = ERROR\"] = jsonData.operation.result === \"ERROR\";\r\ntests[\"Operation Error.Code = 1003\"] = jsonData.operation.errors[0].code === \"1003\";\r\n\r\nvar time1 = {name : \"requestTimeStampUtc\"};\r\nvar time2 = {name : \"responseTimeStampUtc\"};\r\ntests[\"RequestResponse time differs\"] = (time1 != time2);\r\n\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = false;\r\n\r\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"683\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\npostman.setEnvironmentVariable(\"cardId\", \"0\");"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "92 | GET - AHCDN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "try\r\n{\r\ntests[\"Status code is 200\"] = responseCode.code === 200;\r\nvar time1 = {name : \"requestTimeStampUtc\"};\r\nvar time2 = {name : \"responseTimeStampUtc\"};\r\ntests[\"RequestResponse time differs\"] = (time1 != time2);\r\n}\r\ncatch(err)\r\n{\r\n    tests[\"Unexpected Exception\"] = false;\r\n}\r\n"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "/* Set required request format variables for success */\npostman.setEnvironmentVariable(\"contentType\", \"application/json\");\npostman.setEnvironmentVariable(\"accept\", \"\");\npostman.setEnvironmentVariable(\"acceptLanguage\", \"\");\n\n/* Set request specific values for success */\npostman.setEnvironmentVariable(\"accountHolderId\", \"683\");\npostman.setEnvironmentVariable(\"cardId\", \"6039509991133408\");\n\n/* Override values for specific conditions */\npostman.setEnvironmentVariable(\"contentType\", \"\");\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/{{contextVersion}}/accountholders/{{accountHolderId}}/cards/{{cardId}}/cardnumber",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{contentType}}",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "{{accept}}",
+								"description": ""
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{acceptLanguage}}",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "accountholders{id}-features",
 			"description": "",
 			"item": [
